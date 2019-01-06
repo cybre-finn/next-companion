@@ -16,17 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //pre-condition: Is there a login key?
-        Context context = this;
-        SharedPreferences persistence = context.getSharedPreferences(
-                "loginKey", Context.MODE_PRIVATE);
-        String defaultValue = "nokey";
-        String loginKey = persistence.getString("loginKey", defaultValue);
-        if (loginKey.equals("nokey")) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-
         //now this "every android activity" stuff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -34,6 +23,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingButton();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //pre-condition: Is there a login key?
+        Context context = this;
+        SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
+        String defaultValue = "nokey";
+        String loginKey = sharedPref.getString("loginKey", defaultValue);
+        if (loginKey.equals("nokey")) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
