@@ -13,4 +13,5 @@
     <string name="error_invalid_pin">This pin must be 6 digits long</string>
     <string name="error_incorrect_pin">This pin or phone number is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="title_activity_rent">Rent Bike</string>
 </resources>
