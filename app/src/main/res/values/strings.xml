@@ -14,4 +14,6 @@
     <string name="error_incorrect_pin">This pin or phone number is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="title_activity_rent">Rent Bike</string>
+    <string name="prompt_bike_id">Enter Bike UID</string>
+    <string name="action_rent_submit">Rent</string>
 </resources>
