@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via phone number/pin.
  */
 public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
 
@@ -57,8 +57,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             }
         });
 
-        Button mEmailSignInButton = findViewById(R.id.phone_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mPhoneSignInButton = findViewById(R.id.phone_sign_in_button);
+        mPhoneSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
 
     /**
      * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
+     * If there are form errors (invalid phone number, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
@@ -84,21 +84,21 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         mPinView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mPhoneView.getText().toString();
-        String password = mPinView.getText().toString();
+        String phone = mPhoneView.getText().toString();
+        String pin = mPinView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        // Check for a valid pin, if the user entered one.
+        if (!TextUtils.isEmpty(pin) && !isPinValid(pin)) {
             mPinView.setError(getString(R.string.error_invalid_pin));
             focusView = mPinView;
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        // Check for a valid phone address.
+        if (TextUtils.isEmpty(phone)) {
             mPhoneView.setError(getString(R.string.error_field_required));
             focusView = mPhoneView;
             cancel = true;
@@ -112,14 +112,14 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new RequestHandler(email, password, this);
+            mAuthTask = new RequestHandler(phone, pin, this);
             mAuthTask.execute((Void) null);
         }
     }
 
-    private boolean isPasswordValid(String password) {
+    private boolean isPinValid(String pin) {
         //TODO: Replace this with your own logic
-        return password.length() == 6;
+        return pin.length() == 6;
     }
 
     /**

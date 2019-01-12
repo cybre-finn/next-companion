@@ -16,4 +16,5 @@
     <string name="title_activity_rent">Rent Bike</string>
     <string name="prompt_bike_id">Enter Bike UID</string>
     <string name="action_rent_submit">Rent</string>
+    <string name="loginKey">rXXqTgQZUPZ89lzB</string>
 </resources>
