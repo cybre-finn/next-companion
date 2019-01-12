@@ -1,12 +1,6 @@
 package com.example.hochi.nextcompanion;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -31,7 +25,7 @@ public class RequestHandler extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... params) {
         StringBuilder response = new StringBuilder();
-        String urlParameters = "apikey=rXXqTgQZUPZ89lzB&mobile=" + mPhone + "&pin=" + mPin;
+        String urlParameters = "apikey=" + R.string.loginKey + "&mobile=" + mPhone + "&pin=" + mPin;
 
         HttpURLConnection connection = null;
         try {
