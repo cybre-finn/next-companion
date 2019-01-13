@@ -117,7 +117,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new RequestHandler(credentials, this);
+            mAuthTask = new RequestHandler(this, "POST",
+                    "api/login.json", credentials);
             mAuthTask.execute((Void) null);
         }
     }
