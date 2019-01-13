@@ -15,10 +15,14 @@ import java.net.URLEncoder;
 
 public class RequestHandler extends AsyncTask<Void, Void, String> {
 
+    private String mHTTPmethod;
+    private String mEndpoint;
     private AsyncTaskCallbacks<String> callback;
     private String[] mCredentials;
 
-    RequestHandler(String[] credentials, AsyncTaskCallbacks<String> act) {
+    RequestHandler(AsyncTaskCallbacks<String> act, String HTTPmethod, String endpoint, String[] credentials) {
+        mHTTPmethod = HTTPmethod;
+        mEndpoint = endpoint;
         mCredentials = credentials;
         callback = act;
     }
@@ -36,20 +40,21 @@ public class RequestHandler extends AsyncTask<Void, Void, String> {
         HttpURLConnection connection = null;
         try {
             //Create connection
-            URL url = new URL("https://api.nextbike.net/api/login.json");
+            URL url = new URL("https://api.nextbike.net/" + mEndpoint);
             connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
+            connection.setRequestMethod(mHTTPmethod);
+            if(mHTTPmethod.equals("POST")) {
+                connection.setRequestProperty("Content-Type",
+                        "application/x-www-form-urlencoded");
 
-            connection.setRequestProperty("Content-Length", "" +
-                    Integer.toString(urlParameters.toString().getBytes().length));
-            connection.setRequestProperty("Content-Language", "en-US");
+                connection.setRequestProperty("Content-Length", "" +
+                        Integer.toString(urlParameters.toString().getBytes().length));
+                connection.setRequestProperty("Content-Language", "en-US");
 
-            connection.setUseCaches (false);
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-
+                connection.setUseCaches(false);
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+            }
             //Send request
             DataOutputStream wr = new DataOutputStream (
                     connection.getOutputStream ());
