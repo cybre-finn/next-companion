@@ -8,11 +8,22 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class MainActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
+    private RequestHandler getBikesTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+        else {
+            reloadBikeList();
+        }
     }
 
     @Override
@@ -69,4 +83,55 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    protected void reloadBikeList() {
+        //get loginkey
+        SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
+        String defaultValue = "nokey";
+        String loginKey = sharedPref.getString("loginKey", defaultValue);
+
+        String[] params = {
+                "apikey=", getString(R.string.apikey),
+                "loginkey=", loginKey
+        };
+
+        getBikesTask = new RequestHandler(this, "POST",
+                "api/getOpenRentals.json", params);
+        getBikesTask.execute((Void) null);
+    }
+
+    @Override
+    public void onTaskComplete(String response) {
+        if (!response.isEmpty()) {
+            final ArrayList<String> list = new ArrayList<>();
+            try {
+                JSONObject jObject = new JSONObject(response);
+                JSONArray bikesArray = jObject.getJSONArray("rentalCollection");
+
+                for (int i = 0; i < bikesArray.length(); i++) {
+                    String entry;
+                    JSONObject bike = bikesArray.getJSONObject(i);
+                    entry = "Bike " + bike.getString("bike")
+                            + " with lock code " + bike.getString("code");
+                    list.add(entry);
+                }
+                Log.d("DEBUG", list.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            final ListView listview = findViewById(R.id.listview);
+            final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_list_item_1, list);
+            listview.setAdapter(adapter);
+            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                    //TODO: Return bike
+                }
+
+            });
+        }
+        else {
+            //TODO: implement error handling
+        }
+    }
 }
