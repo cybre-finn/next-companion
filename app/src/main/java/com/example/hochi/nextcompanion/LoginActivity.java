@@ -86,6 +86,11 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         // Store values at the time of the login attempt.
         String phone = mPhoneView.getText().toString();
         String pin = mPinView.getText().toString();
+        String[] credentials = {
+                "apikey=", getString(R.string.apikey),
+                "mobile=", mPhoneView.getText().toString(),
+                "pin=", mPinView.getText().toString()
+        };
 
         boolean cancel = false;
         View focusView = null;
@@ -112,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new RequestHandler(phone, pin, this);
+            mAuthTask = new RequestHandler(credentials, this);
             mAuthTask.execute((Void) null);
         }
     }
