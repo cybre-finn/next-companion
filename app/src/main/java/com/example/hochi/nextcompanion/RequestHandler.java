@@ -1,6 +1,9 @@
 package com.example.hochi.nextcompanion;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -12,20 +15,23 @@ import java.net.URLEncoder;
 
 public class RequestHandler extends AsyncTask<Void, Void, String> {
 
-    private final String mPhone;
-    private final String mPin;
     private AsyncTaskCallbacks<String> callback;
+    private String[] mCredentials;
 
-    RequestHandler(String phone, String pin, AsyncTaskCallbacks<String> act) {
-        mPhone = URLEncoder.encode(phone);
-        mPin = pin;
+    RequestHandler(String[] credentials, AsyncTaskCallbacks<String> act) {
+        mCredentials = credentials;
         callback = act;
     }
 
     @Override
     protected String doInBackground(Void... params) {
         StringBuilder response = new StringBuilder();
-        String urlParameters = "apikey=" + R.string.loginKey + "&mobile=" + mPhone + "&pin=" + mPin;
+        StringBuilder urlParameters = new StringBuilder();
+        int i=0;
+        while (i<mCredentials.length) {
+            urlParameters.append("&").append(mCredentials[i]).append(URLEncoder.encode(mCredentials[i+1]));
+            i=i+2;
+        }
 
         HttpURLConnection connection = null;
         try {
@@ -37,7 +43,7 @@ public class RequestHandler extends AsyncTask<Void, Void, String> {
                     "application/x-www-form-urlencoded");
 
             connection.setRequestProperty("Content-Length", "" +
-                    Integer.toString(urlParameters.getBytes().length));
+                    Integer.toString(urlParameters.toString().getBytes().length));
             connection.setRequestProperty("Content-Language", "en-US");
 
             connection.setUseCaches (false);
@@ -47,7 +53,7 @@ public class RequestHandler extends AsyncTask<Void, Void, String> {
             //Send request
             DataOutputStream wr = new DataOutputStream (
                     connection.getOutputStream ());
-            wr.writeBytes (urlParameters);
+            wr.writeBytes (urlParameters.toString());
             wr.flush ();
             wr.close ();
 
