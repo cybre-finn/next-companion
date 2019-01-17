@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -101,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
 
     @Override
     public void onTaskComplete(String response) {
+        final Context context = this;
+
         if (!response.isEmpty()) {
             final ArrayList<String> list = new ArrayList<>();
             try {
@@ -122,13 +125,31 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_1, list);
             listview.setAdapter(adapter);
+
+            try {
+                final JSONObject jObject = new JSONObject(response);
+                final JSONArray bikesArray = jObject.getJSONArray("rentalCollection");
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                    //TODO: Return bike
+                    Intent intent = new Intent(context, ReturnActivity.class);
+                    try {
+                        JSONObject bike = bikesArray.getJSONObject(position);
+                        String bID = bike.getString("bike");
+                        String stID = bike.getString("start_place");
+                        String[] bikeArray = {bID, stID};
+                        intent.putExtra("bike", bikeArray);
+                        startActivity(intent);
+                    }
+                    catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
         else {
             //TODO: implement error handling
