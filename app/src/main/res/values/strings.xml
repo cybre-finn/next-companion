@@ -17,4 +17,7 @@
     <string name="prompt_bike_id">Enter Bike UID</string>
     <string name="action_rent_submit">Rent</string>
     <string name="apikey">rXXqTgQZUPZ89lzB</string>
+    <string name="prompt_return_station_id">Enter the station UID where you leave the bike</string>
+    <string name="action_return_submit">Return</string>
+    <string name="title_activity_return">Return Bike</string>
 </resources>
