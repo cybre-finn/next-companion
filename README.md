@@ -5,8 +5,8 @@ I'm not a professional developer; especially not for Android. Until someone cool
 
 ## Installation
 * Build it
-* F-Droid (coming)
-* manual APK download (coming)
+* F-Droid (upcoming)
+* manual APK download (upcoming)
 
 ## Features
 * [x] Sign in
