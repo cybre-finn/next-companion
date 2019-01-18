@@ -9,13 +9,13 @@ I'm not a professional developer; especially not for Android. Until someone cool
 * manual APK download (coming)
 
 ## Features
-[x] Sign in
-[x] List of rented bikes
-[x] Rent bikes
-[x] Return bikes
-[x] Sign out
-[ ] Good error handling
-[ ] Settings
+* [x] Sign in
+* [x] List of rented bikes
+* [x] Rent bikes
+* [x] Return bikes
+* [x] Sign out
+* [ ] Good error handling
+* [ ] Settings
 
 ## Possible features
 * integration of other bike sharing systems
