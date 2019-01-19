@@ -8,6 +8,16 @@ I'm not a professional developer; especially not for Android. Until someone cool
 * F-Droid (upcoming)
 * manual APK download (upcoming)
 
+## Usage notes
+* Sign up will never be supported so you have to sign up via the website or the official app
+* Sign out is not supported at the moment
+* Flexzones are not supported at the moment
+
+## Tested areas
+NextCompanion should work in other cities as well.
+
+* "Nextbike Norderstedt" Norderstedt, Germany
+
 ## Features
 * [x] Sign in
 * [x] List of rented bikes
@@ -16,6 +26,7 @@ I'm not a professional developer; especially not for Android. Until someone cool
 * [x] Sign out
 * [ ] Good error handling
 * [ ] Settings
+* [ ] Flexzone support
 
 ## Possible features
 * integration of other bike sharing systems
