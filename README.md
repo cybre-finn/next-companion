@@ -1,6 +1,13 @@
 # NextCompanion
 A minimalistic client for Nextbike. Still under early development, use with care.
 
+The app allows you to sing-in, see a list of bikes, rent bikes and return them.
+
+The app is neither official, nor feature-rich. It also doesn't allow you to.
+sign-up to nextbike or to delete your account, use GPS or read the news
+feed. It was just tested for Norderstedt, so it's not guaranteed to work in
+all areas. Also, the app has no support for flexzones.
+
 I'm not a professional developer; especially not for Android. Until someone cool reviewed this source code, please consider this app bad by technical design.
 
 ## Installation
