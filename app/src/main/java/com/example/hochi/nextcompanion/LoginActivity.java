@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         View focusView = null;
 
         // Check for a valid pin, if the user entered one.
-        if (!TextUtils.isEmpty(pin) && !isPinValid(pin)) {
+        if (!TextUtils.isEmpty(pin)) {
             mPinView.setError(getString(R.string.error_invalid_pin));
             focusView = mPinView;
             cancel = true;
@@ -121,11 +121,6 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
                     "api/login.json", credentials);
             mAuthTask.execute((Void) null);
         }
-    }
-
-    private boolean isPinValid(String pin) {
-        //TODO: Replace this with your own logic
-        return pin.length() == 6;
     }
 
     /**
