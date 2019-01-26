@@ -12,7 +12,7 @@ I'm not a professional developer; especially not for Android. Until someone cool
 
 ## Installation
 * Build it
-* F-Droid (upcoming)
+* [F-Droid](https://f-droid.org/packages/com.example.hochi.nextcompanion/)
 * manual APK download (upcoming)
 
 ## Usage notes
