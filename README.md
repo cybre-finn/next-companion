@@ -1,5 +1,5 @@
 # NextCompanion - Hacker's Nextbike Client
-A minimalistic client for Nextbike. Still under early development, use with care.
+A **minimalistic** and **unofficial** client for Nextbike. Still under early development, use with care.
 
 The app allows you to sing-in, see a list of bikes, rent bikes and return them.
 
