@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
     private RequestHandler getBikesTask = null;
@@ -53,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
         SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
         String defaultValue = "nokey";
         String loginKey = sharedPref.getString("loginKey", defaultValue);
+        //if not, go to LoginActivity
         if (loginKey.equals("nokey")) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
@@ -102,14 +100,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
 
     @Override
     public void onTaskComplete(String response) {
+        //Callback called when RequestHandler finished request
         final Context context = this;
-
         if (!response.isEmpty()) {
             final ArrayList<String> list = new ArrayList<>();
             try {
                 JSONObject jObject = new JSONObject(response);
                 JSONArray bikesArray = jObject.getJSONArray("rentalCollection");
-
                 for (int i = 0; i < bikesArray.length(); i++) {
                     String entry;
                     JSONObject bike = bikesArray.getJSONObject(i);
@@ -117,10 +114,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
                             + " with lock code " + bike.getString("code");
                     list.add(entry);
                 }
-                Log.d("DEBUG", list.toString());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            //Create and fill list
             final ListView listview = findViewById(R.id.listview);
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_1, list);
@@ -129,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
             try {
                 final JSONObject jObject = new JSONObject(response);
                 final JSONArray bikesArray = jObject.getJSONArray("rentalCollection");
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                     Intent intent = new Intent(context, ReturnActivity.class);

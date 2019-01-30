@@ -24,6 +24,7 @@ public class RentActivity extends AppCompatActivity implements AsyncTaskCallback
     }
 
     void rentRequest() {
+        //Prepare request to rent bike
         TextView mBikeInput;
         mBikeInput = findViewById(R.id.bike_id);
         String bikeID = mBikeInput.getText().toString();
@@ -45,6 +46,7 @@ public class RentActivity extends AppCompatActivity implements AsyncTaskCallback
 
     @Override
     public void onTaskComplete(String response) {
+        //get back to main activity
         //TODO: *any* response handling
         finish();
     }

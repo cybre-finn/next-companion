@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -161,12 +160,12 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
 
     @Override
     public void onTaskComplete(String response) {
+        //Callback called when RequestHandler finished request
         if (!response.isEmpty()) {
             try {
                 JSONObject jObject = new JSONObject(response);
                 JSONObject userObject = jObject.getJSONObject("user");
                 String loginkey = userObject.getString("loginkey");
-                Log.d("DEBUG", loginkey);
                 SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("loginKey", loginkey);
