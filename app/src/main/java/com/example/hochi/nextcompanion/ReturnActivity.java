@@ -4,15 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Arrays;
-
 public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
-    private RequestHandler returnRequestTask = null;
     private String[] bikeArray;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +44,15 @@ public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallba
                 "station=", stationID,
                 "comment=", "return bike"
         };
-        returnRequestTask = new RequestHandler(this, "POST",
+        RequestHandler returnRequestTask = new RequestHandler(this, "POST",
                 "api/return.json", params);
         returnRequestTask.execute((Void) null);
     }
 
     @Override
     public void onTaskComplete(String response) {
-        Log.d("DEBUG", response);
+        //get back to main activity
+        //TODO: *any* response handling
         finish();
     }
 }
