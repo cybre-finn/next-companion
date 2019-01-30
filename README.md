@@ -1,4 +1,4 @@
-# NextCompanion
+# NextCompanion - Hacker's Nextbike Client
 A minimalistic client for Nextbike. Still under early development, use with care.
 
 The app allows you to sing-in, see a list of bikes, rent bikes and return them.
@@ -8,7 +8,7 @@ sign-up to nextbike or to delete your account, use GPS or read the news
 feed. It was just tested for Norderstedt, so it's not guaranteed to work in
 all areas. Also, the app has no support for flexzones.
 
-I'm not a professional developer; especially not for Android. Until someone cool reviewed this source code, please consider this app bad by technical design.
+**I'm not a professional developer; especially not for Android. Until someone cool reviewed this source code, please consider this app bad by technical design.**
 
 ## Installation
 * Build it
@@ -19,6 +19,9 @@ I'm not a professional developer; especially not for Android. Until someone cool
 * Sign up will never be supported so you have to sign up via the website or the official app
 * Sign out is not supported at the moment
 * Flexzones are not supported at the moment
+
+## Privacy
+This app does not track you or send any private data - including your geopositon - to NextBike servers or third party servers. It does only send a couple of requests to the NextBike servers, just enough to rent you a bike. The original app does not offer an opt out for sending your position to its servers, because it depends on it during the return process for some reason. It even seems to track the exact rout I took in my case.
 
 ## Tested areas
 NextCompanion should work in other cities as well.
@@ -49,6 +52,9 @@ NextCompanion should work in other cities as well.
 * fancy swiping
 
 ## Motivation
-tl;dr: Did not work for me. Too many crashes, completly overloaded with features, returning did not work.
+tl;dr: The original app did not work for me. Too many crashes, completly overloaded with features, returning did not work and privacy issues.
 
 The original client sent me random testing notifications like "IOS test" or "LOL" but idk, why does a bike sharing app needs notifications anyhow? It has also features like their news feed and since a recent upgrade it became unusable for me because returning depends on personal GPS location.
+
+## Disclaimer
+This app is not affiliated to NextBike GmbH in any way. The above statements about the original app may be biased.
