@@ -95,8 +95,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         View focusView = null;
 
         // Check for a valid pin, if the user entered one.
-        if (!TextUtils.isEmpty(pin)) {
-            mPinView.setError(getString(R.string.error_invalid_pin));
+        if (TextUtils.isEmpty(pin)) {
+            mPinView.setError(getString(R.string.error_field_required));
             focusView = mPinView;
             cancel = true;
         }
