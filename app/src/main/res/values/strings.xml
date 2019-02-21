@@ -1,10 +1,9 @@
 <resources>
+    <!-- human readables -->
     <string name="app_name">NextCompanion</string>
-    <string name="action_logout">Logout</string>
-    <string name="isLoggedIn">persistence</string>
-    <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_login">Sign in</string>
     <string name="prompt_phone">Phone number</string>
     <string name="prompt_pin">Pin</string>
     <string name="action_sign_in">Sign in</string>
@@ -15,9 +14,12 @@
     <string name="title_activity_rent">Rent Bike</string>
     <string name="prompt_bike_id">Enter Bike UID</string>
     <string name="action_rent_submit">Rent</string>
-    <string name="apikey">rXXqTgQZUPZ89lzB</string>
     <string name="prompt_return_station_id">Enter the station UID where you leave the bike</string>
     <string name="action_return_submit">Return</string>
     <string name="title_activity_return">Return Bike</string>
+
+    <!-- machine readables -->
+    <string name="apikey">rXXqTgQZUPZ89lzB</string>
     <string name="map_url"><![CDATA[https://nextbike.net/reservation/?lat=50.7086&lng=10.6348&zoom=5&maponly=1]]></string>
+    <string name="isLoggedIn">persistence</string>
 </resources>
