@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_map"
         android:orderInCategory="100"
-        android:title="@string/action_logout"
+        android:title="@string/action_map"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_logout"
