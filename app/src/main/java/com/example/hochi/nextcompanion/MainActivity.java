@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
 
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
             SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.remove("loginkey");
