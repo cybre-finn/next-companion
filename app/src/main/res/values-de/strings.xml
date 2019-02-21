@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- human readables -->
+    <string name="app_name">NextCompanion</string>
+
+    <string name="action_logout">Ausloggen</string>
+    <string name="title_activity_login">Anmelden</string>
+    <string name="prompt_phone">Mobiltelefonnummer</string>
+    <string name="prompt_pin">Pin</string>
+    <string name="action_sign_in">Anmelden</string>
+    <string name="action_sign_in_short">Anmelden</string>
+    <string name="error_invalid_email">Telefonnummer ist inkorrekt</string>
+    <string name="error_incorrect_pin">Pin oder Telefonnummer ist inkorrekt</string>
+    <string name="error_field_required">Feld ist erforderlich</string>
+    <string name="title_activity_rent">Rad ausleihen</string>
+    <string name="prompt_bike_id">Fahrrad-ID eingeben</string>
+    <string name="action_rent_submit">Ausleihen</string>
+    <string name="prompt_return_station_id">Nummer der Rückgabestation</string>
+    <string name="action_return_submit">Rückgabe</string>
+    <string name="title_activity_return">Fahrrad zurückgeben</string>
+    <string name="action_map">Karte</string>
+</resources>
