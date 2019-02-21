@@ -3,6 +3,7 @@ package com.example.hochi.nextcompanion;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
             editor.apply();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+        }
+
+        if (id == R.id.action_map) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.map_url)));
+            startActivity(browserIntent);
         }
 
         return super.onOptionsItemSelected(item);

@@ -19,4 +19,5 @@
     <string name="prompt_return_station_id">Enter the station UID where you leave the bike</string>
     <string name="action_return_submit">Return</string>
     <string name="title_activity_return">Return Bike</string>
+    <string name="map_url"><![CDATA[https://nextbike.net/reservation/?lat=50.7086&lng=10.6348&zoom=5&maponly=1]]></string>
 </resources>
