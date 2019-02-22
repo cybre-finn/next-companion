@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -135,6 +136,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_1, list);
             listview.setAdapter(adapter);
+
+            //Print indicator if empty
+            TextView tv = findViewById(R.id.noBikes);
+            if(list.isEmpty()) tv.setVisibility(View.VISIBLE);
+            else tv.setVisibility(View.INVISIBLE);
 
             try {
                 final JSONObject jObject = new JSONObject(response);
