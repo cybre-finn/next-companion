@@ -27,6 +27,7 @@ This app does not track you or send any private data - including your geopositon
 NextCompanion should work in other cities as well.
 
 * "Nextbike Norderstedt" Norderstedt, Germany
+* "Nextbike Kassel" Kassel, Germany
 
 ## Features
 * [x] Sign in
