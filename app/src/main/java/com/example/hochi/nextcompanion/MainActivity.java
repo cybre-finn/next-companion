@@ -153,7 +153,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
                         JSONObject bike = bikesArray.getJSONObject(position);
                         String bID = bike.getString("bike");
                         String stID = bike.getString("start_place");
-                        String[] bikeArray = {bID, stID};
+                        String lockE = bike.getString("electric_lock");
+                        String gps = bike.getString("gps_tracking");
+                        String[] bikeArray = {bID, stID, lockE, gps};
                         intent.putExtra("bike", bikeArray);
                         startActivity(intent);
                     }

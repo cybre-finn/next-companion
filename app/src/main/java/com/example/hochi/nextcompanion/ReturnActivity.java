@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
@@ -20,13 +21,24 @@ public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallba
         Intent intent = getIntent();
         bikeArray = intent.getStringArrayExtra("bike");
 
-        Button mReturnSubmitButton = findViewById(R.id.return_submit_button);
-        mReturnSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                returnRequest();
-            }
-        });
+        //if GPS and electric lock, show the instruction
+        TextView tv = findViewById(R.id.gps_info);
+        LinearLayout la = findViewById(R.id.return_form_container);
+        if(bikeArray[2].equals("true") && bikeArray[3].equals("true")) {
+            tv.setVisibility(View.VISIBLE);
+            la.setVisibility(View.INVISIBLE);
+        }
+        else {
+            la.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.INVISIBLE);
+            Button mReturnSubmitButton = findViewById(R.id.return_submit_button);
+            mReturnSubmitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    returnRequest();
+                }
+            });
+        }
     }
     void returnRequest() {
         TextView mStationInput;
