@@ -24,7 +24,7 @@ public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallba
         //if GPS and electric lock, show the instruction
         TextView tv = findViewById(R.id.gps_info);
         LinearLayout la = findViewById(R.id.return_form_container);
-        if(bikeArray[2].equals("true") && bikeArray[3].equals("true")) {
+        if(bikeArray[2].equals("true")) {
             tv.setVisibility(View.VISIBLE);
             la.setVisibility(View.INVISIBLE);
         }

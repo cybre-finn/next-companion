@@ -154,8 +154,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
                         String bID = bike.getString("bike");
                         String stID = bike.getString("start_place");
                         String lockE = bike.getString("electric_lock");
-                        String gps = bike.getString("gps_tracking");
-                        String[] bikeArray = {bID, stID, lockE, gps};
+                        String[] bikeArray = {bID, stID, lockE};
                         intent.putExtra("bike", bikeArray);
                         startActivity(intent);
                     }
