@@ -20,13 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/gps_info"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/indicator_electronic_gps_lock" />
             <LinearLayout
                 android:id="@+id/return_form_container"
                 android:layout_width="match_parent"
@@ -56,6 +49,14 @@
                     android:text="@string/action_return_submit"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/gps_info"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/indicator_electronic_lock" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
