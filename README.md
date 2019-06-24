@@ -28,7 +28,9 @@ NextCompanion should work in other cities as well.
 * "Nextbike Norderstedt" Norderstedt, Germany
 * "Nextbike Kassel" Kassel, Germany
 * "Nextbike Poznań" Poznań, Poland
+* "Nextbike Luboń" Luboń, Poland
 * "SWB Mobil/Nextbike Bonn", Germany
+
 
 ## Features
 * [x] Sign in
