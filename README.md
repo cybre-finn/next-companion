@@ -16,8 +16,8 @@ all areas. The app has no support for flexzones.
 * manual APK download (upcoming)
 
 ## Usage notes
-* Sign up will never be supported so you have to sign up via the website or the official app
-* Flexzones are not supported at the moment
+* Sign up will never be supported, so you have to sign up via the website or the official app
+* Flexzones are not supported at the moment, but could work. Please share your experience in [issue #5](https://github.com/h0chi/next-companion/issues/5).
 
 ## Privacy
 This app does not track you or send any private data - including your geopositon and app usage metrics- to NextBike servers or third party servers. It does only send a couple of requests to the NextBike servers, just enough to rent you a bike. The original app does not offer an opt out for sending your position to its servers, because it depends on it during the return process for some reason. It even seems to track the exact rout I took in my case.
@@ -28,6 +28,7 @@ NextCompanion should work in other cities as well.
 * "Nextbike Norderstedt" Norderstedt, Germany
 * "Nextbike Kassel" Kassel, Germany
 * "Nextbike Poznań" Poznań, Poland
+* "SWB Mobil/Nextbike Bonn", Germany
 
 ## Features
 * [x] Sign in
@@ -37,7 +38,7 @@ NextCompanion should work in other cities as well.
 * [x] Sign out
 * [ ] Good error handling
 * [ ] Settings
-* [ ] Flexzone support
+* [ ] Flexzone support?
 
 ## Possible features
 * integration of other bike sharing systems
