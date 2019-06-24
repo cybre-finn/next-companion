@@ -19,6 +19,7 @@
     <string name="title_activity_return">Return Bike</string>
     <string name="action_map">Map</string>
     <string name="indicator_no_bikes">No bikes here…</string>
+    <string name="indicator_electronic_gps_lock">This is a GPS tracked bike with electronic lock. Please just close the lock to return.</string>
 
     <!-- machine readables -->
     <string name="apikey">rXXqTgQZUPZ89lzB</string>

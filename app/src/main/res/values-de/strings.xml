@@ -20,6 +20,7 @@
     <string name="title_activity_return">Fahrrad zurückgeben</string>
     <string name="action_map">Karte</string>
     <string name="indicator_no_bikes">Keine Räder geliehen…</string>
+    <string name="indicator_electronic_gps_lock">Dieses Rad hat einen GPS-Sender und ein elektronisches Schloss. Zur Rückgabe bitte nur das Schloss schließen.</string>
 
     <!-- machine readables -->
     <string name="apikey">rXXqTgQZUPZ89lzB</string>
