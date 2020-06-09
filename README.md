@@ -30,7 +30,8 @@ NextCompanion should work in other cities as well.
 * "Nextbike Poznań" Poznań, Poland
 * "Nextbike Luboń" Luboń, Poland
 * "SWB Mobil/Nextbike Bonn", Germany
-
+* "MetropolRadRuhr" Dresden,... , Germany
+* "szbike" Dresden, Germany
 
 ## Features
 * [x] Sign in
