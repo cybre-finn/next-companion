@@ -26,4 +26,5 @@
     <string name="apikey">rXXqTgQZUPZ89lzB</string>
     <string name="map_url"><![CDATA[https://nextbike.net/reservation/?lat=50.7086&lng=10.6348&zoom=5&maponly=1]]></string>
     <string name="isLoggedIn">persistence</string>
+    <string name="action_open_with">Ausleihen mit NextCompanion</string>
 </resources>
