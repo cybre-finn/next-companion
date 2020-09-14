@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,7 +19,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -29,7 +39,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private RequestHandler mAuthTask = null;
+    private static final String TAG = "LoginActivity";
+    private NextbikeRentalService nbService;
 
     // UI references.
     private TextView mPhoneView;
@@ -40,6 +51,9 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Construct NextbikeRentalService, to Call NextbikeRental-API
+        nbService = NextbikeRentalServiceGenerator.createService(NextbikeRentalService.class);
+
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mPhoneView = findViewById(R.id.phone);
@@ -74,22 +88,14 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+        assert nbService != null : "Failed to construct NextbikeRentalService";
 
         // Reset errors.
         mPhoneView.setError(null);
         mPinView.setError(null);
 
-        // Store values at the time of the login attempt.
         String phone = mPhoneView.getText().toString();
         String pin = mPinView.getText().toString();
-        String[] credentials = {
-                "apikey=", getString(R.string.apikey),
-                "mobile=", mPhoneView.getText().toString(),
-                "pin=", mPinView.getText().toString()
-        };
 
         boolean cancel = false;
         View focusView = null;
@@ -115,10 +121,47 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            NextbikeRequestLoginObject credentials = new NextbikeRequestLoginObject(getString(R.string.apikey), mPhoneView.getText().toString(),
+                    mPinView.getText().toString());
             showProgress(true);
-            mAuthTask = new RequestHandler(this, "POST",
-                    "api/login.json", credentials);
-            mAuthTask.execute((Void) null);
+            Log.d(TAG, "Tries Logging in...");
+            Call<NextbikeResponseLogin> loginCall = nbService.login(credentials);
+            //Call the API Async
+            loginCall.enqueue(new Callback<NextbikeResponseLogin>() {
+                @Override
+                public void onResponse(Call<NextbikeResponseLogin> call, Response<NextbikeResponseLogin> response) {
+                    if(response.isSuccessful()){
+                        NextbikeResponseLogin rspLogin = response.body();
+                        Log.i(TAG,"Login sucessfull");
+                        String loginkey = rspLogin.getUser().loginkey;
+                        SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("loginKey", loginkey);
+                        editor.apply();
+                        finish();
+                    }
+                    else{
+                        //Application Level Failure (404, 500 etc.)
+                        Log.e(TAG, "Request Error when trying to Login");
+                        //TODO: Check which kind of error, for now we assume wrong pin.
+                        mPinView.setError(getString(R.string.error_incorrect_pin));
+                        mPinView.requestFocus();
+                        showProgress(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<NextbikeResponseLogin> call, Throwable t) {
+                    if(t instanceof SocketTimeoutException){
+                        Log.v(TAG,"Connection to Server timed out", t);
+                        //TODO Show message to user.
+                    }else if(t instanceof JsonMappingException){
+                        Log.i(TAG,"Login attemped failed, unable to parse response to POJO", t);
+                    }else{
+                        Log.e(TAG,"Unknown Error",t);
+                    }
+                }
+            });
         }
     }
 
@@ -157,28 +200,4 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-    @Override
-    public void onTaskComplete(String response) {
-        //Callback called when RequestHandler finished request
-        if (!response.isEmpty()) {
-            try {
-                JSONObject jObject = new JSONObject(response);
-                JSONObject userObject = jObject.getJSONObject("user");
-                String loginkey = userObject.getString("loginkey");
-                SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("loginKey", loginkey);
-                editor.apply();
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            finish();
-        } else {
-            mPinView.setError(getString(R.string.error_incorrect_pin));
-            mPinView.requestFocus();
-        }
-    }
 }
-
