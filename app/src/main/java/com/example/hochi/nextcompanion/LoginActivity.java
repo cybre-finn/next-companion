@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
                         Log.v(TAG,"Connection to Server timed out", t);
                         //TODO Show message to user.
                     }else if(t instanceof JsonMappingException){
-                        Log.i(TAG,"Login attemped failed, unable to parse response to POJO", t);
+                        Log.i(TAG,"Login attempted failed, unable to parse response to POJO", t);
                     }else{
                         Log.e(TAG,"Unknown Error",t);
                     }
