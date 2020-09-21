@@ -143,10 +143,14 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
                     else{
                         //Application Level Failure (404, 500 etc.)
                         Log.e(TAG, "Request Error when trying to Login");
-                        //TODO: Check which kind of error, for now we assume wrong pin.
-                        mPinView.setError(getString(R.string.error_incorrect_pin));
-                        mPinView.requestFocus();
-                        showProgress(false);
+                        if(response.code() == 404){
+                            //The API throws a 404 is the login-data is incorrect. Maybe check more fine grade.
+                            mPinView.setError(getString(R.string.error_incorrect_pin));
+                            mPinView.requestFocus();
+                            showProgress(false);
+                        }else{
+                            Log.e(TAG, "Unknown Response when trying to Login: " + response.message());
+                        }
                     }
                 }
 
