@@ -200,4 +200,9 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
+
+    @Override
+    public void onTaskComplete(String response) {
+        //Nothing to do...
+    }
 }
