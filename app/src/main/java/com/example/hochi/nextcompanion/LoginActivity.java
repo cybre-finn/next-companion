@@ -121,10 +121,10 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            //TODO: Ask User for international PhonenumberFormat.
             NextbikeRequestLoginObject credentials = new NextbikeRequestLoginObject(getString(R.string.apikey), mPhoneView.getText().toString(),
                     mPinView.getText().toString());
             showProgress(true);
-            Log.d(TAG, "Tries Logging in...");
             Call<NextbikeResponseLogin> loginCall = nbService.login(credentials);
             //Call the API Async
             loginCall.enqueue(new Callback<NextbikeResponseLogin>() {
