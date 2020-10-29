@@ -10,12 +10,16 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public class NextbikeRentalServiceGenerator {
 
-    private static final String BASE_URL =  "https://api.nextbike.net/api/";
+    private static final String BASE_URL = "https://api.nextbike.net/api/";
 
-    //Enables Logging of all HTTP-Traffic 
+    //Enables Logging of all HTTP-Traffic
+    //Set Level to BODY logs all HTTP-Traffic which should be avoided in release for performance and privacy reasons.
+    //Level.BASIC logs requests and responses and should be used in release.
+    //Level.NONE disables loggin.
     private static HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY);
-            //TODO: Set to Level.BASIC or Level.NONE in release.
+            // .setLevel(HttpLoggingInterceptor.Level.BODY); //for debugging
+            .setLevel(HttpLoggingInterceptor.Level.BASIC); //for release
+            //TODO: Have andorid studio check if we are in release or debuggin.
 
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
             .addInterceptor(logging)
