@@ -1,47 +1,103 @@
 package com.example.hochi.nextcompanion;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
+
+import java.net.SocketTimeoutException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static java.lang.Integer.parseInt;
+
 public class RentActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
-    private RequestHandler rentRequestTask = null;
+
+    private static final String TAG = "RentActivity";
+    private NextbikeRentalService nbService;
+
+    //UI
+    private TextView mBikeView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Construct NextbikeRentalService, to Call NextbikeRental-API
+        nbService = NextbikeRentalServiceGenerator.createService(NextbikeRentalService.class);
+
+        mBikeView = findViewById(R.id.bike_id);
+
         setContentView(R.layout.activity_rent);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Button mRentSubmitButton = findViewById(R.id.rent_submit_button);
-        mRentSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rentRequest();
-            }
-        });
+        mRentSubmitButton.setOnClickListener(view -> rentRequest());
     }
 
     void rentRequest() {
-        //Prepare request to rent bike
-        TextView mBikeInput;
-        mBikeInput = findViewById(R.id.bike_id);
-        String bikeID = mBikeInput.getText().toString();
-        //get loginkey
-        SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
-        String defaultValue = "nokey";
-        String loginKey = sharedPref.getString("loginKey", defaultValue);
+        assert nbService != null : "Failed to construct NextbikeRentalService";
 
-        String[] params = {
-                "apikey=", getString(R.string.apikey),
-                "loginkey=", loginKey,
-                "bike=", bikeID
-        };
+        //Reset error
+        mBikeView.setError(null);
 
-        rentRequestTask = new RequestHandler(this, "POST",
-                "api/rent.json", params);
-        rentRequestTask.execute((Void) null);
+        String bikeId = mBikeView.getText().toString();
+        int bId;
+
+        //Check if Bikeid is correct.
+        if (TextUtils.isEmpty(bikeId)) {
+            mBikeView.setError(getString(R.string.error_field_required));
+            mBikeView.requestFocus();
+        }
+        if (bikeId.length() != 5) {
+            //Bikeid are 5 digits long
+            mBikeView.setError(getString(R.string.bikeId_not_5_digits));
+            mBikeView.requestFocus();
+        }
+        try {
+            bId = parseInt(bikeId);
+
+            //get loginkey
+            SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
+            String loginKey = sharedPref.getString("loginKey", null);
+            assert loginKey != null : "loginkey not found in shared preferences";
+
+            NextbikeRequestRentalObject rent_request = new NextbikeRequestRentalObject(
+                    getString(R.string.apikey),
+                    loginKey,
+                    bId);
+
+            Call<NextbikeResponseRent> rentCall = nbService.rent(rent_request);
+            rentCall.enqueue(new Callback<NextbikeResponseRent>() {
+                @Override
+                public void onResponse(Call<NextbikeResponseRent> call, Response<NextbikeResponseRent> response) {
+                    if (response.isSuccessful()) {
+                        NextbikeResponseRent rspRent = response.body();
+                        Log.i(TAG, "Renting of bike " + rspRent.getRental().bike + " successful");
+
+                        //TODO: Do something with the Bike
+
+                        finish();
+                    } else {
+                        Log.e(TAG, "Unknown Response when trying to Login: " + response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<NextbikeResponseRent> call, Throwable t) {
+                   utils.HandelCallExeption(TAG, t);
+                }
+            });
+        } catch (NumberFormatException e) {
+            //BikeId cannot be parsed as integer
+            mBikeView.setError(getString(R.string.bikeId_not_5_digits));
+            mBikeView.requestFocus();
+        }
     }
 
     @Override

@@ -21,6 +21,7 @@
     <string name="action_map">Karte</string>
     <string name="indicator_no_bikes">Keine Räder geliehen…</string>
     <string name="indicator_electronic_lock">Dieses Rad ein elektronisches Schloss. Zur Rückgabe bitte das Schloss schließen.</string>
+    <string name="bikeId_not_5_digits">Die Radnummer muss eine 5-stellige Zahl sein</string>
 
     <!-- machine readables -->
     <string name="apikey">rXXqTgQZUPZ89lzB</string>
