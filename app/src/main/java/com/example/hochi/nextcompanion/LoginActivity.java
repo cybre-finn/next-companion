@@ -158,14 +158,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
 
                 @Override
                 public void onFailure(Call<NextbikeResponseLogin> call, Throwable t) {
-                    if(t instanceof SocketTimeoutException){
-                        Log.v(TAG,"Connection to Server timed out", t);
-                        //TODO Show message to user.
-                    }else if(t instanceof JsonMappingException){
-                        Log.i(TAG,"Login attempted failed, unable to parse response to POJO", t);
-                    }else{
-                        Log.e(TAG,"Unknown Error",t);
-                    }
+                    utils.HandelCallExeption(TAG,t);
                 }
             });
         }
