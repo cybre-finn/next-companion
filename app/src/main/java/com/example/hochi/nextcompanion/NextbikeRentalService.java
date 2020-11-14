@@ -11,8 +11,11 @@ import retrofit2.http.*;
 public interface NextbikeRentalService {
 
     @POST("login.json")
-    public Call<NextbikeResponseLogin> login(@Body NextbikeRequestLoginObject login_object);
+    Call<NextbikeResponseLogin> login(@Body NextbikeRequestLoginObject login_object);
 
     @POST("rent.json")
-    public Call<NextbikeResponseRent> rent(@Body NextbikeRequestRentalObject renting_object);
+    Call<NextbikeResponseRent> rent(@Body NextbikeRequestRentalObject renting_object);
+
+    @POST("getOpenRentals.json")
+    Call<NextbikeResponseOpenRentals> getOpenRentals(@Body NextbikeRequestOpenRentalsObject or_object);
 }

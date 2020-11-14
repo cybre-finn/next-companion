@@ -47,4 +47,23 @@ public class JsonMappingTest {
         System.out.println(json);
         assertEquals(1234,  responseObject.getRental().bike);
     }
+
+    @Test
+    public void mapNextbikeResonseOpenRentals_isCorrect(){
+        File response = new File("testdata/openRentalsResponse.json"); //A json reply manually fetched via curl
+        ObjectMapper oj = new ObjectMapper();
+        NextbikeResponseOpenRentals responseObject = null;
+        String json = "Error, json not found";
+        try {
+            responseObject = oj.readValue(response, NextbikeResponseOpenRentals.class);
+            json = oj.writeValueAsString(responseObject);
+        } catch(IOException e){
+            e.printStackTrace();
+            System.exit(2);
+        }
+        System.out.println(json);
+        assertEquals(1,  responseObject.getRentalCollection().size());
+        NextbikeResponseOpenRentals.NextbikeResponseRental rental = responseObject.getRentalCollection().get(0);
+        assertEquals(63781794,  rental.id);
+    }
 }
