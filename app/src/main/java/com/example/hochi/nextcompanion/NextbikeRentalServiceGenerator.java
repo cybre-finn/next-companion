@@ -15,11 +15,11 @@ public class NextbikeRentalServiceGenerator {
     //Enables Logging of all HTTP-Traffic
     //Set Level to BODY logs all HTTP-Traffic which should be avoided in release for performance and privacy reasons.
     //Level.BASIC logs requests and responses and should be used in release.
-    //Level.NONE disables loggin.
+    //Level.NONE disables logging.
     private static HttpLoggingInterceptor logging = new HttpLoggingInterceptor()
             // .setLevel(HttpLoggingInterceptor.Level.BODY); //for debugging
             .setLevel(HttpLoggingInterceptor.Level.BASIC); //for release
-            //TODO: Have andorid studio check if we are in release or debuggin.
+            //TODO: Have android studio check if we are in release or debugging.
 
     private static OkHttpClient httpClient = new OkHttpClient.Builder()
             .addInterceptor(logging)

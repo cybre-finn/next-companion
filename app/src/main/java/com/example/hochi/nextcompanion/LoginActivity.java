@@ -122,8 +122,10 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //TODO: Ask User for international PhonenumberFormat.
-            NextbikeRequestLoginObject credentials = new NextbikeRequestLoginObject(getString(R.string.apikey), mPhoneView.getText().toString(),
-                    mPinView.getText().toString());
+            NextbikeRequestLoginObject credentials = new NextbikeRequestLoginObject(
+                    getString(R.string.apikey),
+                    phone,
+                    pin);
             showProgress(true);
             Call<NextbikeResponseLogin> loginCall = nbService.login(credentials);
             //Call the API Async
@@ -132,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
                 public void onResponse(Call<NextbikeResponseLogin> call, Response<NextbikeResponseLogin> response) {
                     if(response.isSuccessful()){
                         NextbikeResponseLogin rspLogin = response.body();
-                        Log.i(TAG,"Login sucessfull");
+                        Log.i(TAG,"Login successful");
                         String loginkey = rspLogin.getUser().loginkey;
                         SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPref.edit();

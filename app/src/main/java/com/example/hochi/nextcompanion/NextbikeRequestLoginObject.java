@@ -7,10 +7,10 @@ import static java.lang.Integer.parseInt;
  */
 
 public class NextbikeRequestLoginObject{
-    private String apikey;
-    private String mobile;
-    private int pin;
-    private int show_errors;
+    private final String apikey;
+    private final String mobile;
+    private final int pin;
+    private final int show_errors;
 
     public NextbikeRequestLoginObject(String apikey, String mobile, String pin) {
         this.show_errors = 1;
