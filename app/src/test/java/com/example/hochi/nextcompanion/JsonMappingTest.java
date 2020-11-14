@@ -31,4 +31,20 @@ public class JsonMappingTest {
         System.out.println(json);
         assertEquals("49123456",  responseObject.getUser().loginkey);
     }
+    @Test
+    public void mapNextbikeResonseRent_isCorrect(){
+        File response = new File("testdata/rentResponse.json"); //A json reply manually fetched via curl
+        ObjectMapper oj = new ObjectMapper();
+        NextbikeResponseRent responseObject = null;
+        String json = "Error, json not found";
+        try {
+            responseObject = oj.readValue(response, NextbikeResponseRent.class);
+            json = oj.writeValueAsString(responseObject);
+        } catch(IOException e){
+            e.printStackTrace();
+            System.exit(2);
+        }
+        System.out.println(json);
+        assertEquals(1234,  responseObject.getRental().bike);
+    }
 }

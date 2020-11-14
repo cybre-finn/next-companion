@@ -12,4 +12,7 @@ public interface NextbikeRentalService {
 
     @POST("login.json")
     public Call<NextbikeResponseLogin> login(@Body NextbikeRequestLoginObject login_object);
+
+    @POST("rent.json")
+    public Call<NextbikeResponseRent> rent(@Body NextbikeRequestRentalObject renting_object);
 }
