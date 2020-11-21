@@ -22,7 +22,7 @@
     <string name="indicator_electronic_lock">This is a bike with electric lock. Please just close the lock to return.</string>
 
     <!-- machine readables -->
-    <string name="apikey">rXXqTgQZUPZ89lzB</string>
+    <string name="apikey">3IaBlP9OZw14dvES</string>
     <string name="map_url"><![CDATA[https://nextbike.net/reservation/?lat=50.7086&lng=10.6348&zoom=5&maponly=1]]></string>
     <string name="isLoggedIn">persistence</string>
 </resources>
