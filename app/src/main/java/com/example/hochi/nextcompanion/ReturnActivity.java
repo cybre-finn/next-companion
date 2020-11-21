@@ -54,7 +54,7 @@ public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallba
                 "bike=", bikeArray[0],
                 "loginkey=", loginKey,
                 "station=", stationID,
-                "comment=", "return bike"
+                "comment=", ""
         };
         RequestHandler returnRequestTask = new RequestHandler(this, "POST",
                 "api/return.json", params);
