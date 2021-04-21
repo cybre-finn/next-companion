@@ -27,13 +27,11 @@ public class RentActivity extends AppCompatActivity implements AsyncTaskCallback
         });
 
         Intent intent = getIntent();
-//        String action = intent.getAction();
         Uri data = intent.getData();
 
         if (data != null) {
             String bikeID = data.toString().substring(15);
             ((TextView) findViewById(R.id.bike_id)).setText(bikeID);
-//            rentRequest();
         }
     }
 
