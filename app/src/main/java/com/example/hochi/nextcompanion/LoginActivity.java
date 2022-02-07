@@ -166,9 +166,25 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
                 JSONObject jObject = new JSONObject(response);
                 JSONObject userObject = jObject.getJSONObject("user");
                 String loginkey = userObject.getString("loginkey");
+                // Check for username
+                String username = null;
+                if(userObject.has("screen_name"))
+                {
+                    username = userObject.getString("screen_name");
+                }
+                // Check for phone number
+                String phone = null;
+                if(userObject.has("mobile"))
+                {
+                    phone = "+" + userObject.getString("mobile");
+                }
                 SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("loginKey", loginkey);
+                // Store username in sPrefs to be able to display it in the MainActivity
+                editor.putString("username", username);
+                // Store phone number in sPrefs to be able to display it in the MainActivity
+                editor.putString("phone", phone);
                 editor.apply();
             }
             catch (Exception e) {

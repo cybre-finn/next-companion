@@ -59,7 +59,36 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
         }
         else {
             reloadBikeList();
+            updatePersonalInformation();
         }
+    }
+
+
+    /**
+     * Update text fields displaying the personal information (name, phone number) ...
+     * ... for the logged in user based on the values currently stored in the sharedPreferences
+     */
+    private void updatePersonalInformation() {
+        // Get values from sPrefs
+        SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
+        String defaultValueName = getString(R.string.unknown);
+        String username = sharedPref.getString("username", defaultValueName);
+        String defaultValuePhone = getString(R.string.unknown);
+        String phoneNumber = sharedPref.getString("phone", defaultValuePhone);
+
+        // Find the views
+        TextView tvUsername = findViewById(R.id.tv_display_username);
+        TextView tvPhone = findViewById(R.id.tv_display_phone);
+
+        // Get label-strings
+        String labelUsername = getString(R.string.username);
+        String labelPhone = getString(R.string.phone);
+
+        // Update text content
+        if(tvUsername!=null)
+            tvUsername.setText(String.format("%s: %s", labelUsername, username));
+        if(tvPhone!=null)
+            tvPhone.setText(String.format("%s: %s", labelPhone, phoneNumber));
     }
 
     @Override
@@ -82,6 +111,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
             SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.remove("loginKey");
+            // Remove username
+            editor.remove("username");
+            // Remove phone number
+            editor.remove("phone");
             editor.apply();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

@@ -1,24 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
+    android:orientation="vertical"
     tools:showIn="@layout/activity_main">
-    <TextView
-        android:id="@+id/noBikes"
-        android:gravity="center"
-        android:textSize="20sp"
+
+
+    <LinearLayout
+        android:id="@+id/ll_person_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/area_vertical_margin"
+        android:layout_marginTop="@dimen/area_vertical_margin"
+        app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_display_username"
+                android:gravity="left"
+                android:textSize="22sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:layout_marginLeft="@dimen/text_horizontal_margin"
+                />
+
+            <TextView
+                android:id="@+id/tv_display_phone"
+                android:gravity="left"
+                android:textSize="17sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:layout_marginLeft="@dimen/text_horizontal_margin"
+                />
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_bikes_area"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/indicator_no_bikes" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_person_area">
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/noBikes"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/indicator_no_bikes" />
 
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>
