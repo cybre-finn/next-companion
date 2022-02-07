@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
         if (id == R.id.action_logout) {
             SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.remove("loginkey");
+            editor.remove("loginKey");
             editor.apply();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
