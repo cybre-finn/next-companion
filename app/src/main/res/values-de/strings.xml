@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- human readables -->
+    <string name="app_name">NextCompanion</string>
+
+    <string name="action_logout">Ausloggen</string>
+    <string name="title_activity_login">Anmelden</string>
+    <string name="prompt_phone">Mobiltelefonnummer</string>
+    <string name="prompt_pin">Pin</string>
+    <string name="action_sign_in">Anmelden</string>
+    <string name="action_sign_in_short">Anmelden</string>
+    <string name="error_invalid_email">Telefonnummer ist inkorrekt</string>
+    <string name="error_incorrect_pin">Pin oder Telefonnummer ist inkorrekt</string>
+    <string name="error_field_required">Feld ist erforderlich</string>
+    <string name="title_activity_rent">Rad ausleihen</string>
+    <string name="prompt_bike_id">Fahrrad-ID eingeben</string>
+    <string name="action_rent_submit">Ausleihen</string>
+    <string name="prompt_return_station_id">Nummer der Rückgabestation</string>
+    <string name="action_return_submit">Rückgabe</string>
+    <string name="title_activity_return">Fahrrad zurückgeben</string>
+    <string name="action_map">Karte</string>
+    <string name="indicator_no_bikes">Keine Räder geliehen…</string>
+    <string name="indicator_electronic_lock">Dieses Rad ein elektronisches Schloss. Zur Rückgabe bitte das Schloss schließen.</string>
+
+    <!-- machine readables -->
+    <string name="apikey">3IaBlP9OZw14dvES</string>
+    <string name="map_url"><![CDATA[https://nextbike.net/reservation/?lat=50.7086&lng=10.6348&zoom=5&maponly=1]]></string>
+    <string name="isLoggedIn">persistence</string>
+    <string name="action_open_with">Ausleihen mit NextCompanion</string>
+</resources>
