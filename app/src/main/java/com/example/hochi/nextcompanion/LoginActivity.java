@@ -180,6 +180,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStop();
     }
 
+
     /**
      * Shows the progress UI and hides the login form.
      */
