@@ -23,6 +23,7 @@
     <string name="unknown">unknown</string>
     <string name="phone">Phone Number</string>
     <string name="username">Username</string>
+    <string name="error_fetch_userdata">Could not fetch user\'s personal information</string>
 
     <!-- machine readables -->
     <string name="apikey">3IaBlP9OZw14dvES</string>

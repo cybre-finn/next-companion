@@ -244,13 +244,11 @@ public class LoginActivity extends AppCompatActivity {
             // Check for the user's data
             if(authResponse!=null && authResponse.user!=null && authResponse.user.loginkey!=null)
             {
-                // Successful login -> Set values in shared prefs and finish
+                // Successful login -> Set loginKey in shared prefs and finish
                 SharedPreferences sharedPref = getSharedPreferences("persistence", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 // Store loginKey, username and phoneNumber in sPrefs
                 editor.putString("loginKey", authResponse.user.loginkey);
-                editor.putString("username", authResponse.user.screen_name);
-                editor.putString("phone", authResponse.user.mobile);
                 editor.apply();
                 // Finish this application -> reveals main activity
                 finish();
