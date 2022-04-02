@@ -21,6 +21,10 @@
     <string name="action_map">Karte</string>
     <string name="indicator_no_bikes">Keine Räder geliehen…</string>
     <string name="indicator_electronic_lock">Dieses Rad ein elektronisches Schloss. Zur Rückgabe bitte das Schloss schließen.</string>
+    <string name="unknown">unbekannt</string>
+    <string name="phone">Telefonnummer</string>
+    <string name="username">Name</string>
+    <string name="error_fetch_userdata">User-Informationen nicht abrufbar</string>
 
     <!-- machine readables -->
     <string name="apikey">3IaBlP9OZw14dvES</string>

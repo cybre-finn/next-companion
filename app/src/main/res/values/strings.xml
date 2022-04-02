@@ -20,6 +20,10 @@
     <string name="action_map">Map</string>
     <string name="indicator_no_bikes">No bikes here…</string>
     <string name="indicator_electronic_lock">This is a bike with electric lock. Please just close the lock to return.</string>
+    <string name="unknown">unknown</string>
+    <string name="phone">Phone Number</string>
+    <string name="username">Username</string>
+    <string name="error_fetch_userdata">Could not fetch user\'s personal information</string>
 
     <!-- machine readables -->
     <string name="apikey">3IaBlP9OZw14dvES</string>
