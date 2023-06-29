@@ -32,6 +32,7 @@ NextCompanion should work in other cities as well.
 * "SWB Mobil/Nextbike Bonn", Germany
 * "MetropolRadRuhr" Dresden,... , Germany
 * "szbike" Dresden, Germany
+* "KVV Nextbike" Karlsruhe, Germany
 
 ## Features
 * [x] Sign in
