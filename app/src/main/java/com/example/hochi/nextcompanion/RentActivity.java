@@ -19,12 +19,7 @@ public class RentActivity extends AppCompatActivity implements AsyncTaskCallback
         setContentView(R.layout.activity_rent);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Button mRentSubmitButton = findViewById(R.id.rent_submit_button);
-        mRentSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rentRequest();
-            }
-        });
+        mRentSubmitButton.setOnClickListener(view -> rentRequest());
 
         Intent intent = getIntent();
         Uri data = intent.getData();

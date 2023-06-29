@@ -32,12 +32,7 @@ public class ReturnActivity extends AppCompatActivity implements AsyncTaskCallba
             la.setVisibility(View.VISIBLE);
             tv.setVisibility(View.INVISIBLE);
             Button mReturnSubmitButton = findViewById(R.id.return_submit_button);
-            mReturnSubmitButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    returnRequest();
-                }
-            });
+            mReturnSubmitButton.setOnClickListener(view -> returnRequest());
         }
     }
     void returnRequest() {

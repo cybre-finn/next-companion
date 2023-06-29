@@ -36,12 +36,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
 
         //Floating Button
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, RentActivity.class);
-                startActivity(intent);
-            }
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(context, RentActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -145,9 +142,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
             try {
                 final JSONObject jObject = new JSONObject(response);
                 final JSONArray bikesArray = jObject.getJSONArray("rentalCollection");
-                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                listview.setOnItemClickListener((parent, view, position, id) -> {
                     Intent intent = new Intent(context, ReturnActivity.class);
                     try {
                         JSONObject bike = bikesArray.getJSONObject(position);
@@ -161,15 +156,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskCallback
                     catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-
-            });
+                });
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        else {
-            //TODO: implement error handling
-        }
+//        else {
+//            //TODO: implement error handling
+//        }
     }
 }

@@ -45,24 +45,16 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
         mPhoneView = findViewById(R.id.phone);
 
         mPinView = findViewById(R.id.pin);
-        mPinView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
+        mPinView.setOnEditorActionListener((textView, id, keyEvent) -> {
+            if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+                attemptLogin();
+                return true;
             }
+            return false;
         });
 
         Button mPhoneSignInButton = findViewById(R.id.phone_sign_in_button);
-        mPhoneSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                attemptLogin();
-            }
-        });
+        mPhoneSignInButton.setOnClickListener(view -> attemptLogin());
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -170,8 +162,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskCallbac
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("loginKey", loginkey);
                 editor.apply();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             finish();
