@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import org.w3c.dom.Text;
 
 public class RentActivity extends AppCompatActivity implements AsyncTaskCallbacks<String> {
     private RequestHandler rentRequestTask = null;
+    private static final String DEBUG_TAG = "RENT_ACTIVITY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class RentActivity extends AppCompatActivity implements AsyncTaskCallback
     public void onTaskComplete(String response) {
         //get back to main activity
         //TODO: *any* response handling
+        Log.d(DEBUG_TAG, String.format("response: %s", response));
         finish();
     }
 }
